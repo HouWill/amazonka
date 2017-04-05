@@ -48,6 +48,7 @@ library
         , Network.AWS.EC2.AssignPrivateIPAddresses
         , Network.AWS.EC2.AssociateAddress
         , Network.AWS.EC2.AssociateDHCPOptions
+        , Network.AWS.EC2.AssociateIAMInstanceProfile
         , Network.AWS.EC2.AssociateRouteTable
         , Network.AWS.EC2.AssociateSubnetCidrBlock
         , Network.AWS.EC2.AssociateVPCCidrBlock
@@ -137,6 +138,7 @@ library
         , Network.AWS.EC2.DescribeHostReservationOfferings
         , Network.AWS.EC2.DescribeHostReservations
         , Network.AWS.EC2.DescribeHosts
+        , Network.AWS.EC2.DescribeIAMInstanceProfileAssociations
         , Network.AWS.EC2.DescribeIdFormat
         , Network.AWS.EC2.DescribeIdentityIdFormat
         , Network.AWS.EC2.DescribeImageAttribute
@@ -188,6 +190,7 @@ library
         , Network.AWS.EC2.DescribeVolumeAttribute
         , Network.AWS.EC2.DescribeVolumeStatus
         , Network.AWS.EC2.DescribeVolumes
+        , Network.AWS.EC2.DescribeVolumesModifications
         , Network.AWS.EC2.DetachClassicLinkVPC
         , Network.AWS.EC2.DetachInternetGateway
         , Network.AWS.EC2.DetachNetworkInterface
@@ -197,6 +200,7 @@ library
         , Network.AWS.EC2.DisableVPCClassicLink
         , Network.AWS.EC2.DisableVPCClassicLinkDNSSupport
         , Network.AWS.EC2.DisassociateAddress
+        , Network.AWS.EC2.DisassociateIAMInstanceProfile
         , Network.AWS.EC2.DisassociateRouteTable
         , Network.AWS.EC2.DisassociateSubnetCidrBlock
         , Network.AWS.EC2.DisassociateVPCCidrBlock
@@ -228,6 +232,7 @@ library
         , Network.AWS.EC2.ModifyVPCAttribute
         , Network.AWS.EC2.ModifyVPCEndpoint
         , Network.AWS.EC2.ModifyVPCPeeringConnectionOptions
+        , Network.AWS.EC2.ModifyVolume
         , Network.AWS.EC2.ModifyVolumeAttribute
         , Network.AWS.EC2.MonitorInstances
         , Network.AWS.EC2.MoveAddressToVPC
@@ -239,6 +244,7 @@ library
         , Network.AWS.EC2.RejectVPCPeeringConnection
         , Network.AWS.EC2.ReleaseAddress
         , Network.AWS.EC2.ReleaseHosts
+        , Network.AWS.EC2.ReplaceIAMInstanceProfileAssociation
         , Network.AWS.EC2.ReplaceNetworkACLAssociation
         , Network.AWS.EC2.ReplaceNetworkACLEntry
         , Network.AWS.EC2.ReplaceRoute

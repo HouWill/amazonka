@@ -262,6 +262,9 @@ import Test.AWS.EC2.Internal
 --         , requestDisableVPCClassicLinkDNSSupport $
 --             disableVPCClassicLinkDNSSupport
 --
+--         , requestDescribeVolumesModifications $
+--             describeVolumesModifications
+--
 --         , requestAllocateAddress $
 --             allocateAddress
 --
@@ -454,6 +457,9 @@ import Test.AWS.EC2.Internal
 --         , requestDescribeNetworkInterfaceAttribute $
 --             describeNetworkInterfaceAttribute
 --
+--         , requestReplaceIAMInstanceProfileAssociation $
+--             replaceIAMInstanceProfileAssociation
+--
 --         , requestReleaseHosts $
 --             releaseHosts
 --
@@ -520,6 +526,9 @@ import Test.AWS.EC2.Internal
 --         , requestDeleteCustomerGateway $
 --             deleteCustomerGateway
 --
+--         , requestDisassociateIAMInstanceProfile $
+--             disassociateIAMInstanceProfile
+--
 --         , requestDisassociateRouteTable $
 --             disassociateRouteTable
 --
@@ -531,6 +540,9 @@ import Test.AWS.EC2.Internal
 --
 --         , requestDeleteSpotDatafeedSubscription $
 --             deleteSpotDatafeedSubscription
+--
+--         , requestModifyVolume $
+--             modifyVolume
 --
 --         , requestEnableVPCClassicLink $
 --             enableVPCClassicLink
@@ -552,6 +564,9 @@ import Test.AWS.EC2.Internal
 --
 --         , requestModifySnapshotAttribute $
 --             modifySnapshotAttribute
+--
+--         , requestDescribeIAMInstanceProfileAssociations $
+--             describeIAMInstanceProfileAssociations
 --
 --         , requestCreateSnapshot $
 --             createSnapshot
@@ -579,6 +594,9 @@ import Test.AWS.EC2.Internal
 --
 --         , requestUnassignIPv6Addresses $
 --             unassignIPv6Addresses
+--
+--         , requestAssociateIAMInstanceProfile $
+--             associateIAMInstanceProfile
 --
 --         , requestDeleteEgressOnlyInternetGateway $
 --             deleteEgressOnlyInternetGateway
@@ -928,6 +946,9 @@ import Test.AWS.EC2.Internal
 --         , responseDisableVPCClassicLinkDNSSupport $
 --             disableVPCClassicLinkDNSSupportResponse
 --
+--         , responseDescribeVolumesModifications $
+--             describeVolumesModificationsResponse
+--
 --         , responseAllocateAddress $
 --             allocateAddressResponse
 --
@@ -1120,6 +1141,9 @@ import Test.AWS.EC2.Internal
 --         , responseDescribeNetworkInterfaceAttribute $
 --             describeNetworkInterfaceAttributeResponse
 --
+--         , responseReplaceIAMInstanceProfileAssociation $
+--             replaceIAMInstanceProfileAssociationResponse
+--
 --         , responseReleaseHosts $
 --             releaseHostsResponse
 --
@@ -1186,6 +1210,9 @@ import Test.AWS.EC2.Internal
 --         , responseDeleteCustomerGateway $
 --             deleteCustomerGatewayResponse
 --
+--         , responseDisassociateIAMInstanceProfile $
+--             disassociateIAMInstanceProfileResponse
+--
 --         , responseDisassociateRouteTable $
 --             disassociateRouteTableResponse
 --
@@ -1197,6 +1224,9 @@ import Test.AWS.EC2.Internal
 --
 --         , responseDeleteSpotDatafeedSubscription $
 --             deleteSpotDatafeedSubscriptionResponse
+--
+--         , responseModifyVolume $
+--             modifyVolumeResponse
 --
 --         , responseEnableVPCClassicLink $
 --             enableVPCClassicLinkResponse
@@ -1218,6 +1248,9 @@ import Test.AWS.EC2.Internal
 --
 --         , responseModifySnapshotAttribute $
 --             modifySnapshotAttributeResponse
+--
+--         , responseDescribeIAMInstanceProfileAssociations $
+--             describeIAMInstanceProfileAssociationsResponse
 --
 --         , responseCreateSnapshot $
 --             snapshot
@@ -1245,6 +1278,9 @@ import Test.AWS.EC2.Internal
 --
 --         , responseUnassignIPv6Addresses $
 --             unassignIPv6AddressesResponse
+--
+--         , responseAssociateIAMInstanceProfile $
+--             associateIAMInstanceProfileResponse
 --
 --         , responseDeleteEgressOnlyInternetGateway $
 --             deleteEgressOnlyInternetGatewayResponse
@@ -1752,6 +1788,11 @@ requestDisableVPCClassicLinkDNSSupport = req
     "DisableVPCClassicLinkDNSSupport"
     "fixture/DisableVPCClassicLinkDNSSupport.yaml"
 
+requestDescribeVolumesModifications :: DescribeVolumesModifications -> TestTree
+requestDescribeVolumesModifications = req
+    "DescribeVolumesModifications"
+    "fixture/DescribeVolumesModifications.yaml"
+
 requestAllocateAddress :: AllocateAddress -> TestTree
 requestAllocateAddress = req
     "AllocateAddress"
@@ -2072,6 +2113,11 @@ requestDescribeNetworkInterfaceAttribute = req
     "DescribeNetworkInterfaceAttribute"
     "fixture/DescribeNetworkInterfaceAttribute.yaml"
 
+requestReplaceIAMInstanceProfileAssociation :: ReplaceIAMInstanceProfileAssociation -> TestTree
+requestReplaceIAMInstanceProfileAssociation = req
+    "ReplaceIAMInstanceProfileAssociation"
+    "fixture/ReplaceIAMInstanceProfileAssociation.yaml"
+
 requestReleaseHosts :: ReleaseHosts -> TestTree
 requestReleaseHosts = req
     "ReleaseHosts"
@@ -2182,6 +2228,11 @@ requestDeleteCustomerGateway = req
     "DeleteCustomerGateway"
     "fixture/DeleteCustomerGateway.yaml"
 
+requestDisassociateIAMInstanceProfile :: DisassociateIAMInstanceProfile -> TestTree
+requestDisassociateIAMInstanceProfile = req
+    "DisassociateIAMInstanceProfile"
+    "fixture/DisassociateIAMInstanceProfile.yaml"
+
 requestDisassociateRouteTable :: DisassociateRouteTable -> TestTree
 requestDisassociateRouteTable = req
     "DisassociateRouteTable"
@@ -2201,6 +2252,11 @@ requestDeleteSpotDatafeedSubscription :: DeleteSpotDatafeedSubscription -> TestT
 requestDeleteSpotDatafeedSubscription = req
     "DeleteSpotDatafeedSubscription"
     "fixture/DeleteSpotDatafeedSubscription.yaml"
+
+requestModifyVolume :: ModifyVolume -> TestTree
+requestModifyVolume = req
+    "ModifyVolume"
+    "fixture/ModifyVolume.yaml"
 
 requestEnableVPCClassicLink :: EnableVPCClassicLink -> TestTree
 requestEnableVPCClassicLink = req
@@ -2236,6 +2292,11 @@ requestModifySnapshotAttribute :: ModifySnapshotAttribute -> TestTree
 requestModifySnapshotAttribute = req
     "ModifySnapshotAttribute"
     "fixture/ModifySnapshotAttribute.yaml"
+
+requestDescribeIAMInstanceProfileAssociations :: DescribeIAMInstanceProfileAssociations -> TestTree
+requestDescribeIAMInstanceProfileAssociations = req
+    "DescribeIAMInstanceProfileAssociations"
+    "fixture/DescribeIAMInstanceProfileAssociations.yaml"
 
 requestCreateSnapshot :: CreateSnapshot -> TestTree
 requestCreateSnapshot = req
@@ -2281,6 +2342,11 @@ requestUnassignIPv6Addresses :: UnassignIPv6Addresses -> TestTree
 requestUnassignIPv6Addresses = req
     "UnassignIPv6Addresses"
     "fixture/UnassignIPv6Addresses.yaml"
+
+requestAssociateIAMInstanceProfile :: AssociateIAMInstanceProfile -> TestTree
+requestAssociateIAMInstanceProfile = req
+    "AssociateIAMInstanceProfile"
+    "fixture/AssociateIAMInstanceProfile.yaml"
 
 requestDeleteEgressOnlyInternetGateway :: DeleteEgressOnlyInternetGateway -> TestTree
 requestDeleteEgressOnlyInternetGateway = req
@@ -3015,6 +3081,13 @@ responseDisableVPCClassicLinkDNSSupport = res
     ec2
     (Proxy :: Proxy DisableVPCClassicLinkDNSSupport)
 
+responseDescribeVolumesModifications :: DescribeVolumesModificationsResponse -> TestTree
+responseDescribeVolumesModifications = res
+    "DescribeVolumesModificationsResponse"
+    "fixture/DescribeVolumesModificationsResponse.proto"
+    ec2
+    (Proxy :: Proxy DescribeVolumesModifications)
+
 responseAllocateAddress :: AllocateAddressResponse -> TestTree
 responseAllocateAddress = res
     "AllocateAddressResponse"
@@ -3463,6 +3536,13 @@ responseDescribeNetworkInterfaceAttribute = res
     ec2
     (Proxy :: Proxy DescribeNetworkInterfaceAttribute)
 
+responseReplaceIAMInstanceProfileAssociation :: ReplaceIAMInstanceProfileAssociationResponse -> TestTree
+responseReplaceIAMInstanceProfileAssociation = res
+    "ReplaceIAMInstanceProfileAssociationResponse"
+    "fixture/ReplaceIAMInstanceProfileAssociationResponse.proto"
+    ec2
+    (Proxy :: Proxy ReplaceIAMInstanceProfileAssociation)
+
 responseReleaseHosts :: ReleaseHostsResponse -> TestTree
 responseReleaseHosts = res
     "ReleaseHostsResponse"
@@ -3617,6 +3697,13 @@ responseDeleteCustomerGateway = res
     ec2
     (Proxy :: Proxy DeleteCustomerGateway)
 
+responseDisassociateIAMInstanceProfile :: DisassociateIAMInstanceProfileResponse -> TestTree
+responseDisassociateIAMInstanceProfile = res
+    "DisassociateIAMInstanceProfileResponse"
+    "fixture/DisassociateIAMInstanceProfileResponse.proto"
+    ec2
+    (Proxy :: Proxy DisassociateIAMInstanceProfile)
+
 responseDisassociateRouteTable :: DisassociateRouteTableResponse -> TestTree
 responseDisassociateRouteTable = res
     "DisassociateRouteTableResponse"
@@ -3644,6 +3731,13 @@ responseDeleteSpotDatafeedSubscription = res
     "fixture/DeleteSpotDatafeedSubscriptionResponse.proto"
     ec2
     (Proxy :: Proxy DeleteSpotDatafeedSubscription)
+
+responseModifyVolume :: ModifyVolumeResponse -> TestTree
+responseModifyVolume = res
+    "ModifyVolumeResponse"
+    "fixture/ModifyVolumeResponse.proto"
+    ec2
+    (Proxy :: Proxy ModifyVolume)
 
 responseEnableVPCClassicLink :: EnableVPCClassicLinkResponse -> TestTree
 responseEnableVPCClassicLink = res
@@ -3693,6 +3787,13 @@ responseModifySnapshotAttribute = res
     "fixture/ModifySnapshotAttributeResponse.proto"
     ec2
     (Proxy :: Proxy ModifySnapshotAttribute)
+
+responseDescribeIAMInstanceProfileAssociations :: DescribeIAMInstanceProfileAssociationsResponse -> TestTree
+responseDescribeIAMInstanceProfileAssociations = res
+    "DescribeIAMInstanceProfileAssociationsResponse"
+    "fixture/DescribeIAMInstanceProfileAssociationsResponse.proto"
+    ec2
+    (Proxy :: Proxy DescribeIAMInstanceProfileAssociations)
 
 responseCreateSnapshot :: Snapshot -> TestTree
 responseCreateSnapshot = res
@@ -3756,6 +3857,13 @@ responseUnassignIPv6Addresses = res
     "fixture/UnassignIPv6AddressesResponse.proto"
     ec2
     (Proxy :: Proxy UnassignIPv6Addresses)
+
+responseAssociateIAMInstanceProfile :: AssociateIAMInstanceProfileResponse -> TestTree
+responseAssociateIAMInstanceProfile = res
+    "AssociateIAMInstanceProfileResponse"
+    "fixture/AssociateIAMInstanceProfileResponse.proto"
+    ec2
+    (Proxy :: Proxy AssociateIAMInstanceProfile)
 
 responseDeleteEgressOnlyInternetGateway :: DeleteEgressOnlyInternetGatewayResponse -> TestTree
 responseDeleteEgressOnlyInternetGateway = res

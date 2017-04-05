@@ -230,7 +230,7 @@ module Network.AWS.EC2
     -- ** ReplaceNetworkACLAssociation
     , module Network.AWS.EC2.ReplaceNetworkACLAssociation
 
-    -- ** DescribeNatGateways
+    -- ** DescribeNatGateways (Paginated)
     , module Network.AWS.EC2.DescribeNatGateways
 
     -- ** DescribeAddresses
@@ -346,6 +346,9 @@ module Network.AWS.EC2
 
     -- ** DisableVPCClassicLinkDNSSupport
     , module Network.AWS.EC2.DisableVPCClassicLinkDNSSupport
+
+    -- ** DescribeVolumesModifications
+    , module Network.AWS.EC2.DescribeVolumesModifications
 
     -- ** AllocateAddress
     , module Network.AWS.EC2.AllocateAddress
@@ -539,6 +542,9 @@ module Network.AWS.EC2
     -- ** DescribeNetworkInterfaceAttribute
     , module Network.AWS.EC2.DescribeNetworkInterfaceAttribute
 
+    -- ** ReplaceIAMInstanceProfileAssociation
+    , module Network.AWS.EC2.ReplaceIAMInstanceProfileAssociation
+
     -- ** ReleaseHosts
     , module Network.AWS.EC2.ReleaseHosts
 
@@ -605,6 +611,9 @@ module Network.AWS.EC2
     -- ** DeleteCustomerGateway
     , module Network.AWS.EC2.DeleteCustomerGateway
 
+    -- ** DisassociateIAMInstanceProfile
+    , module Network.AWS.EC2.DisassociateIAMInstanceProfile
+
     -- ** DisassociateRouteTable
     , module Network.AWS.EC2.DisassociateRouteTable
 
@@ -616,6 +625,9 @@ module Network.AWS.EC2
 
     -- ** DeleteSpotDatafeedSubscription
     , module Network.AWS.EC2.DeleteSpotDatafeedSubscription
+
+    -- ** ModifyVolume
+    , module Network.AWS.EC2.ModifyVolume
 
     -- ** EnableVPCClassicLink
     , module Network.AWS.EC2.EnableVPCClassicLink
@@ -637,6 +649,9 @@ module Network.AWS.EC2
 
     -- ** ModifySnapshotAttribute
     , module Network.AWS.EC2.ModifySnapshotAttribute
+
+    -- ** DescribeIAMInstanceProfileAssociations
+    , module Network.AWS.EC2.DescribeIAMInstanceProfileAssociations
 
     -- ** CreateSnapshot
     , module Network.AWS.EC2.CreateSnapshot
@@ -664,6 +679,9 @@ module Network.AWS.EC2
 
     -- ** UnassignIPv6Addresses
     , module Network.AWS.EC2.UnassignIPv6Addresses
+
+    -- ** AssociateIAMInstanceProfile
+    , module Network.AWS.EC2.AssociateIAMInstanceProfile
 
     -- ** DeleteEgressOnlyInternetGateway
     , module Network.AWS.EC2.DeleteEgressOnlyInternetGateway
@@ -874,6 +892,9 @@ module Network.AWS.EC2
     -- ** HypervisorType
     , HypervisorType (..)
 
+    -- ** IAMInstanceProfileAssociationState
+    , IAMInstanceProfileAssociationState (..)
+
     -- ** ImageAttributeName
     , ImageAttributeName (..)
 
@@ -1053,6 +1074,9 @@ module Network.AWS.EC2
 
     -- ** VolumeAttributeName
     , VolumeAttributeName (..)
+
+    -- ** VolumeModificationState
+    , VolumeModificationState (..)
 
     -- ** VolumeState
     , VolumeState (..)
@@ -1433,6 +1457,15 @@ module Network.AWS.EC2
     , iamInstanceProfile
     , iapARN
     , iapId
+
+    -- ** IAMInstanceProfileAssociation
+    , IAMInstanceProfileAssociation
+    , iamInstanceProfileAssociation
+    , iapaAssociationId
+    , iapaInstanceId
+    , iapaState
+    , iapaIAMInstanceProfile
+    , iapaTimestamp
 
     -- ** IAMInstanceProfileSpecification
     , IAMInstanceProfileSpecification
@@ -2883,6 +2916,22 @@ module Network.AWS.EC2
     , volumeDetail
     , vdSize
 
+    -- ** VolumeModification
+    , VolumeModification
+    , volumeModification
+    , vmProgress
+    , vmStartTime
+    , vmModificationState
+    , vmTargetVolumeType
+    , vmOriginalVolumeType
+    , vmTargetSize
+    , vmTargetIOPS
+    , vmOriginalSize
+    , vmOriginalIOPS
+    , vmStatusMessage
+    , vmEndTime
+    , vmVolumeId
+
     -- ** VolumeStatusAction
     , VolumeStatusAction
     , volumeStatusAction
@@ -2930,6 +2979,7 @@ import           Network.AWS.EC2.AssignIPv6Addresses
 import           Network.AWS.EC2.AssignPrivateIPAddresses
 import           Network.AWS.EC2.AssociateAddress
 import           Network.AWS.EC2.AssociateDHCPOptions
+import           Network.AWS.EC2.AssociateIAMInstanceProfile
 import           Network.AWS.EC2.AssociateRouteTable
 import           Network.AWS.EC2.AssociateSubnetCidrBlock
 import           Network.AWS.EC2.AssociateVPCCidrBlock
@@ -3019,6 +3069,7 @@ import           Network.AWS.EC2.DescribeFlowLogs
 import           Network.AWS.EC2.DescribeHostReservationOfferings
 import           Network.AWS.EC2.DescribeHostReservations
 import           Network.AWS.EC2.DescribeHosts
+import           Network.AWS.EC2.DescribeIAMInstanceProfileAssociations
 import           Network.AWS.EC2.DescribeIdentityIdFormat
 import           Network.AWS.EC2.DescribeIdFormat
 import           Network.AWS.EC2.DescribeImageAttribute
@@ -3060,6 +3111,7 @@ import           Network.AWS.EC2.DescribeSubnets
 import           Network.AWS.EC2.DescribeTags
 import           Network.AWS.EC2.DescribeVolumeAttribute
 import           Network.AWS.EC2.DescribeVolumes
+import           Network.AWS.EC2.DescribeVolumesModifications
 import           Network.AWS.EC2.DescribeVolumeStatus
 import           Network.AWS.EC2.DescribeVPCAttribute
 import           Network.AWS.EC2.DescribeVPCClassicLink
@@ -3079,6 +3131,7 @@ import           Network.AWS.EC2.DisableVGWRoutePropagation
 import           Network.AWS.EC2.DisableVPCClassicLink
 import           Network.AWS.EC2.DisableVPCClassicLinkDNSSupport
 import           Network.AWS.EC2.DisassociateAddress
+import           Network.AWS.EC2.DisassociateIAMInstanceProfile
 import           Network.AWS.EC2.DisassociateRouteTable
 import           Network.AWS.EC2.DisassociateSubnetCidrBlock
 import           Network.AWS.EC2.DisassociateVPCCidrBlock
@@ -3108,6 +3161,7 @@ import           Network.AWS.EC2.ModifyReservedInstances
 import           Network.AWS.EC2.ModifySnapshotAttribute
 import           Network.AWS.EC2.ModifySpotFleetRequest
 import           Network.AWS.EC2.ModifySubnetAttribute
+import           Network.AWS.EC2.ModifyVolume
 import           Network.AWS.EC2.ModifyVolumeAttribute
 import           Network.AWS.EC2.ModifyVPCAttribute
 import           Network.AWS.EC2.ModifyVPCEndpoint
@@ -3122,6 +3176,7 @@ import           Network.AWS.EC2.RegisterImage
 import           Network.AWS.EC2.RejectVPCPeeringConnection
 import           Network.AWS.EC2.ReleaseAddress
 import           Network.AWS.EC2.ReleaseHosts
+import           Network.AWS.EC2.ReplaceIAMInstanceProfileAssociation
 import           Network.AWS.EC2.ReplaceNetworkACLAssociation
 import           Network.AWS.EC2.ReplaceNetworkACLEntry
 import           Network.AWS.EC2.ReplaceRoute

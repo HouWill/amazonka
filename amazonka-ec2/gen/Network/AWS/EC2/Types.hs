@@ -113,6 +113,9 @@ module Network.AWS.EC2.Types
     -- * HypervisorType
     , HypervisorType (..)
 
+    -- * IAMInstanceProfileAssociationState
+    , IAMInstanceProfileAssociationState (..)
+
     -- * ImageAttributeName
     , ImageAttributeName (..)
 
@@ -292,6 +295,9 @@ module Network.AWS.EC2.Types
 
     -- * VolumeAttributeName
     , VolumeAttributeName (..)
+
+    -- * VolumeModificationState
+    , VolumeModificationState (..)
 
     -- * VolumeState
     , VolumeState (..)
@@ -672,6 +678,15 @@ module Network.AWS.EC2.Types
     , iamInstanceProfile
     , iapARN
     , iapId
+
+    -- * IAMInstanceProfileAssociation
+    , IAMInstanceProfileAssociation
+    , iamInstanceProfileAssociation
+    , iapaAssociationId
+    , iapaInstanceId
+    , iapaState
+    , iapaIAMInstanceProfile
+    , iapaTimestamp
 
     -- * IAMInstanceProfileSpecification
     , IAMInstanceProfileSpecification
@@ -2121,6 +2136,22 @@ module Network.AWS.EC2.Types
     , VolumeDetail
     , volumeDetail
     , vdSize
+
+    -- * VolumeModification
+    , VolumeModification
+    , volumeModification
+    , vmProgress
+    , vmStartTime
+    , vmModificationState
+    , vmTargetVolumeType
+    , vmOriginalVolumeType
+    , vmTargetSize
+    , vmTargetIOPS
+    , vmOriginalSize
+    , vmOriginalIOPS
+    , vmStatusMessage
+    , vmEndTime
+    , vmVolumeId
 
     -- * VolumeStatusAction
     , VolumeStatusAction

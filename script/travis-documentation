@@ -1,49 +1,40 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-if [ "$TRAVIS_BRANCH" != "develop" ]; then
-    echo "Ignoring documentation build for branch '$TRAVIS_BRANCH'."
-    exit 0
-fi
+shopt -s extglob
+
+BRANCH="${TRAVIS_BRANCH:-$(git rev-parse --abbrev-ref HEAD)}"
+TOKEN="${DOC_TOKEN:-}"
+
+BUILD_ID=${TRAVIS_BUILD_ID:-1}
+BUILD_NUMBER=${TRAVIS_BUILD_NUMBER:-1}
+
+GHCVER=${GHCVER?"GHCVER needs to be set."}
 
 if [ -z "$DOC_TOKEN" ]; then
     echo "Ignoring documentation build due to missing token."
     exit 0
 fi
 
-DOC_REF=github.com/brendanhay/amazonka-doc.git
-GHCVER=${GHCVER?"GHCVER needs to be set."}
-BUILD_ID=${TRAVIS_BUILD_ID?"TRAVIS_BUILD_ID needs to be set."}
-BUILD_NUMBER=${TRAVIS_BUILD_NUMBER?"TRAVIS_BUILD_NUMBER needs to be set."}
-
 path=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
+root=$(stack --stack-yaml stack-$GHCVER.yaml path --local-doc-root)
+ref=github.com/brendanhay/amazonka-doc.git
 output=doc
-platform=x86_64-linux
-resolver=$(sed -n 's/^resolver: *\(.*\)$/\1/p' stack-$GHCVER.yaml)
+retries=0
+version=$(sed -n 's/^version: *\(.*\)$/\1/p' amazonka/amazonka.cabal)
 
-echo "Using resolver ${resolver}"
+git clone https://$ref $output
 
-databases=( $(stack --stack-yaml stack-$GHCVER.yaml path | sed -n 's/^.*-pkg-db: *\(.*\)$/\1/p') )
-databases=( "${databases[@]/#/--package-db }" )
+cd $output
+mkdir -p $BRANCH
 
-echo "Using resolver ${resolver}"
-echo "Using databases ${databases[@]}"
+git checkout gh-pages
 
-$path/travis-timeout \
-    stack --no-terminal --skip-ghc-check --stack-yaml stack-$GHCVER.yaml install \
-    standalone-haddock \
-    hscolour
-
-$path/travis-timeout \
-    stack --no-terminal --skip-ghc-check --stack-yaml stack-$GHCVER.yaml build \
-    amazonka-core amazonka amazonka-s3-encryption
-
-$path/travis-timeout \
-    standalone-haddock --hyperlink-source -o $output \
-    ${databases[@]} \
-    core amazonka*
+git config --global push.default simple
+git config user.name "Brendan Hay"
+git config user.email "brendan.g.hay+amazonka@gmail.com"
 
 {
     cat <<-HTML
@@ -53,28 +44,22 @@ $path/travis-timeout \
     <ul>
 HTML
 
-    for dir in $(ls -d $output/*/); do
+    for dir in $(ls -d ../amazonka*/); do
         file=$(basename $dir)
         cat <<-HTML
-        <li><a href="${file}/index.html">${file}</a></li>
+        <li><a href="${file}-${version}/index.html">${file}</a></li>
 HTML
     done
 
     cat <<-HTML
     </ul>
 HTML
-} > $output/index.html
+} > $BRANCH/index.html
 
-set -x
+git add $BRANCH/index.html
+git commit -m "$BRANCH index build $BUILD_NUMBER"
 
-cd $output
-
-git init
-
-git config user.name "Brendan Hay"
-git config user.email "brendan.g.hay@gmail.com"
-
-git add .
-git commit -m "Travis CI documentation deploy $BUILD_NUMBER"
-
-git push --force --quiet "https://${DOC_TOKEN}@${DOC_REF}" master:gh-pages > /dev/null 2>&1
+until git push --force-with-lease --quiet "https://${TOKEN}@${ref}" || (( retries++ >= 5 )); do
+    echo "Retrying git push ..."
+    git pull --force origin gh-pages
+done

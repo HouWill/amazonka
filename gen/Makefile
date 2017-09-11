@@ -3,6 +3,7 @@ TOP       := ..
 BIN       := bin
 MODEL_DIR := model
 OUT_DIR   := ..
+STYLISH   := $(BIN)/stylish-haskell
 
 define version =
 $(shell sed -n 's/^version: *\([0-9]*\.[0-9]*\.[0-9]\).*$$/\1/p' $(1))
@@ -37,7 +38,7 @@ format:
  -type f \
  -name '*.hs' \
  -printf ' -> %p\n' \
- -exec stylish-haskell -i {} \;
+ -exec $(STYLISH) -i {} \;
 
 $(BIN)/amazonka-gen: $(BIN)
 	stack build amazonka-gen --copy-bins --local-bin-path $(BIN)
@@ -56,4 +57,4 @@ $(MODEL_DIR): vendor/botocore
 	cp -rf vendor/botocore/botocore/data $@
 
 vendor/botocore:
-	git clone git@github.com:boto/botocore $@
+	git clone https://github.com/boto/botocore.git $@
